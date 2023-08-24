@@ -1,0 +1,41 @@
+.typing {
+	display: inline-block;
+	overflow: hidden;
+	border-right: 1px solid transparent;
+	font-size: 20px;
+	white-space: nowrap;
+}
+
+@for $i from 1 through 30 {
+	.typing {
+		&[data-count="#{$i}"] {
+			width: #{$i}em;
+			animation: typing-#{$i} #{$i * 0.15}s steps(#{$i}) 0s normal both, caret 0.3s steps(1) infinite normal forwards;
+		}
+		&[data-delay="#{$i}"] {
+			animation-delay: #{$i * 0.1}s;
+		}
+		@keyframes name {
+			0% {
+				width: 0;
+			}
+			100% {
+				width: 100%;
+			}
+		}
+	}
+	@keyframes typing-#{$i} {
+		from {
+			width: 0;
+		}
+		to {
+			width: calc(#{$i}em - 2px);
+		}
+	}
+}
+
+@keyframes caret {
+	50% {
+		border-right-color: currentColor;
+	}
+}
